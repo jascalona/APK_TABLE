@@ -41,7 +41,7 @@ public class Interface_I extends javax.swing.JFrame {
 
         Pantalla.setBackground(new java.awt.Color(51, 51, 51));
 
-        jTextField1.setBackground(new java.awt.Color(0, 0, 51));
+        jTextField1.setBackground(new java.awt.Color(102, 102, 102));
         jTextField1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(204, 204, 204));
         jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));

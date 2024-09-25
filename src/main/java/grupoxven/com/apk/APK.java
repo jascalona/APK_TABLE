@@ -1,4 +1,3 @@
-
 package grupoxven.com.apk;
 
 /**
@@ -11,7 +10,5 @@ public class APK {
      
             Interface_I InterI = new Interface_I();
             InterI.setVisible(true);
-
-        //  System.out.println("Hello World!");
     }
 }

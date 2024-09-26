@@ -1,19 +1,28 @@
 package grupoxven.com.apk;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.FileReader;
+import javax.swing.table.DefaultTableModel;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+        
 /**
  *
  * @author JEscalona
  */
+
 public class Interface_I extends javax.swing.JFrame {
 
-    /**
+  
+   /**
      * Creates new form Interface_I
      */
     public Interface_I() {
         initComponents();
         setLocationRelativeTo(null);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -24,27 +33,24 @@ public class Interface_I extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         Pantalla = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        jtxtbuscar = new javax.swing.JTextField();
         Footer = new javax.swing.JLabel();
         btn_log = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btn_reset = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\JEscalona\\Documents\\NetBeansProjects\\APK\\src\\main\\java\\images\\table.png")); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, 610));
-
         Pantalla.setBackground(new java.awt.Color(51, 51, 51));
 
-        jTextField1.setBackground(new java.awt.Color(102, 102, 102));
-        jTextField1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jtxtbuscar.setBackground(new java.awt.Color(102, 102, 102));
+        jtxtbuscar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jtxtbuscar.setForeground(new java.awt.Color(204, 204, 204));
+        jtxtbuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
         Footer.setBackground(new java.awt.Color(204, 204, 204));
         Footer.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
@@ -96,7 +102,7 @@ public class Interface_I extends javax.swing.JFrame {
                         .addComponent(Footer)
                         .addGroup(PantallaLayout.createSequentialGroup()
                             .addGap(14, 14, 14)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtxtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(btn_reset, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(PantallaLayout.createSequentialGroup()
@@ -109,7 +115,7 @@ public class Interface_I extends javax.swing.JFrame {
             .addGroup(PantallaLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(PantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addComponent(jtxtbuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                     .addComponent(btn_reset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(35, 35, 35)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -121,6 +127,9 @@ public class Interface_I extends javax.swing.JFrame {
         );
 
         jPanel1.add(Pantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 370, 480));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\JEscalona\\Documents\\NetBeansProjects\\APK\\src\\main\\java\\images\\table.png")); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, 610));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -199,6 +208,6 @@ public class Interface_I extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jtxtbuscar;
     // End of variables declaration//GEN-END:variables
 }

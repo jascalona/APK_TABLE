@@ -233,7 +233,10 @@ public class Interface_II extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_dropActionPerformed
 
     private void btn_aggActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aggActionPerformed
-        // TODO add your handling code here:
+        // btn_agg
+        Uloap Up =new Uloap();
+        Up.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btn_aggActionPerformed
 
     private void btn_resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_resetActionPerformed

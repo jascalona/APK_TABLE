@@ -1,14 +1,26 @@
 package grupoxven.com.apk;
 
+import java.sql.*;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import db.Conexion;
+
 /**
  *
  * @author JEscalona
  */
 public class Uloap extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Interface_I
-     */
+    //Instancia de Conexion
+    Conexion cn =new Conexion();
+    
+    Connection Conn;
+    Statement st;
+    ResultSet rs;
+    DefaultTableModel modelo;
+    
+    
     public Uloap() {
         initComponents();
         setLocationRelativeTo(null);
@@ -24,25 +36,21 @@ public class Uloap extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         Pantalla = new javax.swing.JPanel();
         btn_agg = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        Uname = new javax.swing.JTextField();
+        Usurname = new javax.swing.JTextField();
+        Upassword = new javax.swing.JTextField();
+        Uroll = new javax.swing.JTextField();
         btn_volver = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         Footer = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\JEscalona\\Documents\\NetBeansProjects\\APK\\src\\main\\java\\images\\table.png")); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, 610));
 
         Pantalla.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -59,43 +67,35 @@ public class Uloap extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 102));
 
-        jTextField1.setBackground(new java.awt.Color(153, 153, 153));
-        jTextField1.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        Uname.setBackground(new java.awt.Color(153, 153, 153));
+        Uname.setForeground(new java.awt.Color(51, 51, 51));
+        Uname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                UnameActionPerformed(evt);
             }
         });
 
-        jTextField2.setBackground(new java.awt.Color(153, 153, 153));
-        jTextField2.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        Usurname.setBackground(new java.awt.Color(153, 153, 153));
+        Usurname.setForeground(new java.awt.Color(51, 51, 51));
+        Usurname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                UsurnameActionPerformed(evt);
             }
         });
 
-        jTextField3.setBackground(new java.awt.Color(153, 153, 153));
-        jTextField3.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        Upassword.setBackground(new java.awt.Color(153, 153, 153));
+        Upassword.setForeground(new java.awt.Color(51, 51, 51));
+        Upassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                UpasswordActionPerformed(evt);
             }
         });
 
-        jTextField4.setBackground(new java.awt.Color(153, 153, 153));
-        jTextField4.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        Uroll.setBackground(new java.awt.Color(153, 153, 153));
+        Uroll.setForeground(new java.awt.Color(51, 51, 51));
+        Uroll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-
-        jTextField5.setBackground(new java.awt.Color(153, 153, 153));
-        jTextField5.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                UrollActionPerformed(evt);
             }
         });
 
@@ -106,27 +106,24 @@ public class Uloap extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Uroll, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Upassword, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Usurname, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Uname, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(58, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addComponent(Uname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Upassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Uroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addComponent(Usurname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         btn_volver.setBackground(new java.awt.Color(0, 0, 51));
@@ -190,6 +187,9 @@ public class Uloap extends javax.swing.JFrame {
 
         jPanel1.add(Pantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 370, 480));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\JEscalona\\Documents\\NetBeansProjects\\APK\\src\\main\\java\\images\\table.png")); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, 610));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -207,7 +207,9 @@ public class Uloap extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_aggActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aggActionPerformed
-        // TODO add your handling code here:
+        // btn_agregar_registro
+        AgregarU();
+        
     }//GEN-LAST:event_btn_aggActionPerformed
 
     private void btn_volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_volverActionPerformed
@@ -217,25 +219,21 @@ public class Uloap extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btn_volverActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void UnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UnameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_UnameActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void UsurnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsurnameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_UsurnameActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void UpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_UpasswordActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void UrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UrollActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
-
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_UrollActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,20 +284,50 @@ public class Uloap extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+    //Metodo de Carga
+    void AgregarU(){
+        String name = Uname.getText();
+        String surname = Usurname.getText();
+        String pass = Upassword.getText();
+        String roll = Uroll.getText();
+    
+        try {
+            if (name.equals("") || surname.equals("") || pass.equals("") || roll.equals("") ){
+                JOptionPane.showMessageDialog(null, "Asegurese de llenar todos los campos");
+                //Limpiar Tabla
+            } else{
+                
+                String sql = " INSERT INTO p_list_phone_log (name,surname,password,roll) VALUES ('"+name+"', '"+surname+"', '"+pass+"', '"+roll+"') ";
+                Conn = cn.conectar();
+                st = Conn.createStatement();
+                st.executeUpdate(sql);
+                JOptionPane.showMessageDialog(null, "Su registro fue cargado con Exito!");
+                //volver a Interface_III
+                Interface_III InterIII =new Interface_III();
+                InterIII.setVisible(true);
+                this.setVisible(false);
+            }
+            
+        } catch (Exception e) {
+        
+        }
+    
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Footer;
     private javax.swing.JPanel Pantalla;
+    private javax.swing.JTextField Uname;
+    private javax.swing.JTextField Upassword;
+    private javax.swing.JTextField Uroll;
+    private javax.swing.JTextField Usurname;
     private javax.swing.JButton btn_agg;
     private javax.swing.JButton btn_volver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }

@@ -71,7 +71,7 @@ public class Login extends javax.swing.JFrame {
         inputUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
         inputPassword.setBackground(new java.awt.Color(102, 102, 102));
-        inputPassword.setForeground(new java.awt.Color(51, 51, 51));
+        inputPassword.setForeground(new java.awt.Color(204, 204, 204));
         inputPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         inputPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

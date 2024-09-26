@@ -247,6 +247,7 @@ public class Interface_II extends javax.swing.JFrame {
         // btn_setting_su
         Interface_III InterIII =new Interface_III();
         InterIII.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btn_cogActionPerformed
 
     /**

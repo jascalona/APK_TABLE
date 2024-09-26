@@ -41,8 +41,12 @@ public class Uloap extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         Uname = new javax.swing.JTextField();
         Usurname = new javax.swing.JTextField();
-        Upassword = new javax.swing.JTextField();
-        Uroll = new javax.swing.JTextField();
+        Upass = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        Uroll = new javax.swing.JComboBox<>();
         btn_volver = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         Footer = new javax.swing.JLabel();
@@ -83,16 +87,29 @@ public class Uloap extends javax.swing.JFrame {
             }
         });
 
-        Upassword.setBackground(new java.awt.Color(153, 153, 153));
-        Upassword.setForeground(new java.awt.Color(51, 51, 51));
-        Upassword.addActionListener(new java.awt.event.ActionListener() {
+        Upass.setBackground(new java.awt.Color(153, 153, 153));
+        Upass.setForeground(new java.awt.Color(51, 51, 51));
+        Upass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UpasswordActionPerformed(evt);
+                UpassActionPerformed(evt);
             }
         });
 
+        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel3.setText("Ingrese su Apellido");
+
+        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel4.setText("Ingrese su Nombre");
+
+        jLabel5.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel5.setText("Defina  un Roll");
+
+        jLabel6.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel6.setText("Ingrese una Clave");
+
         Uroll.setBackground(new java.awt.Color(153, 153, 153));
-        Uroll.setForeground(new java.awt.Color(51, 51, 51));
+        Uroll.setForeground(new java.awt.Color(204, 204, 204));
+        Uroll.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Administrator", "Service"}));
         Uroll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UrollActionPerformed(evt);
@@ -105,25 +122,37 @@ public class Uloap extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(55, 55, 55)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Uroll, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Upassword, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Usurname, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Uname, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Upass, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                    .addComponent(Usurname, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                    .addComponent(Uname, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Uroll, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(58, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
+                .addGap(32, 32, 32)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Uname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(Upassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(Uroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(15, 15, 15)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Usurname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addGap(21, 21, 21)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Upass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addComponent(Uroll, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                .addGap(26, 26, 26))
         );
 
         btn_volver.setBackground(new java.awt.Color(0, 0, 51));
@@ -227,9 +256,9 @@ public class Uloap extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_UsurnameActionPerformed
 
-    private void UpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpasswordActionPerformed
+    private void UpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpassActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_UpasswordActionPerformed
+    }//GEN-LAST:event_UpassActionPerformed
 
     private void UrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UrollActionPerformed
         // TODO add your handling code here:
@@ -290,8 +319,8 @@ public class Uloap extends javax.swing.JFrame {
     void AgregarU(){
         String name = Uname.getText();
         String surname = Usurname.getText();
-        String pass = Upassword.getText();
-        String roll = Uroll.getText();
+        String pass = Upass.getText();
+        Object roll = Uroll.getSelectedItem();
     
         try {
             if (name.equals("") || surname.equals("") || pass.equals("") || roll.equals("") ){
@@ -320,13 +349,17 @@ public class Uloap extends javax.swing.JFrame {
     private javax.swing.JLabel Footer;
     private javax.swing.JPanel Pantalla;
     private javax.swing.JTextField Uname;
-    private javax.swing.JTextField Upassword;
-    private javax.swing.JTextField Uroll;
+    private javax.swing.JTextField Upass;
+    private javax.swing.JComboBox<String> Uroll;
     private javax.swing.JTextField Usurname;
     private javax.swing.JButton btn_agg;
     private javax.swing.JButton btn_volver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables

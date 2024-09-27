@@ -364,7 +364,7 @@ public class Interface_III extends javax.swing.JFrame {
             }
             
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ha Ocurrido un Error al Eliminar este Usuario!" +e.getMessage());
+            JOptionPane.showMessageDialog(null, "Ha Ocurrido un Error, debe selecionar almenos un registro!" +e.getMessage());
         }
 
     }

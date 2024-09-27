@@ -243,8 +243,8 @@ public class Uloap extends javax.swing.JFrame {
 
     private void btn_volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_volverActionPerformed
         // btn_vover
-        Interface_II InterII =new Interface_II();
-        InterII.setVisible(true);
+        Interface_III InterIII =new Interface_III();
+        InterIII.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_volverActionPerformed
 

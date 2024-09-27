@@ -234,8 +234,8 @@ public class Interface_II extends javax.swing.JFrame {
 
     private void btn_aggActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aggActionPerformed
         // btn_agg
-        Uloap Up =new Uloap();
-        Up.setVisible(true);
+        Uloap_register UpR =new Uloap_register();
+        UpR.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_aggActionPerformed
 

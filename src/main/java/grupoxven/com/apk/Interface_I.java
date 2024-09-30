@@ -9,8 +9,13 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.table.DefaultTableModel;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-        
+import javax.swing.table.TableModel;
+
+
+
 /**
  *
  * @author JEscalona
@@ -20,11 +25,20 @@ public class Interface_I extends javax.swing.JFrame {
 
     //Instancia de conexion 
     Conexion cn =new Conexion();
-    
     Connection Conn;
-    DefaultTableModel  modelo;
+   // DefaultTableModel  modelo;
+    
+    
+    /* PERTENECE A table_datos();
+    // String [] Titulos = {"name", "surname", "GEO","phone", "extension"};
+    // DefaultTableModel dtm_datos = new DefaultTableModel();
+    // TableRowSorter<TableModel>trs;
+    // String[][] M_datos;
+    */
+    
     Statement st;
     ResultSet rs;
+    DefaultTableModel modelo;
     
  
     public Interface_I() {
@@ -44,7 +58,7 @@ public class Interface_I extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         Pantalla = new javax.swing.JPanel();
-        jtxtbuscar = new javax.swing.JTextField();
+        jBuscar = new javax.swing.JTextField();
         Footer = new javax.swing.JLabel();
         btn_log = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -60,10 +74,23 @@ public class Interface_I extends javax.swing.JFrame {
 
         Pantalla.setBackground(new java.awt.Color(51, 51, 51));
 
-        jtxtbuscar.setBackground(new java.awt.Color(102, 102, 102));
-        jtxtbuscar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jtxtbuscar.setForeground(new java.awt.Color(204, 204, 204));
-        jtxtbuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jBuscar.setBackground(new java.awt.Color(102, 102, 102));
+        jBuscar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jBuscar.setForeground(new java.awt.Color(204, 204, 204));
+        jBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBuscarActionPerformed(evt);
+            }
+        });
+        jBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jBuscarKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jBuscarKeyTyped(evt);
+            }
+        });
 
         Footer.setBackground(new java.awt.Color(204, 204, 204));
         Footer.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
@@ -88,32 +115,10 @@ public class Interface_I extends javax.swing.JFrame {
 
             },
             new String [] {
-                "name", "surname", "GEO", "phone", "extension"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, true, true
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(Tabla);
-        if (Tabla.getColumnModel().getColumnCount() > 0) {
-            Tabla.getColumnModel().getColumn(0).setHeaderValue("name");
-            Tabla.getColumnModel().getColumn(1).setHeaderValue("surname");
-            Tabla.getColumnModel().getColumn(2).setHeaderValue("GEO");
-            Tabla.getColumnModel().getColumn(3).setHeaderValue("phone");
-            Tabla.getColumnModel().getColumn(4).setHeaderValue("extension");
-        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -125,17 +130,17 @@ public class Interface_I extends javax.swing.JFrame {
                         .addGap(106, 106, 106)
                         .addComponent(jLabel3))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addGap(20, 20, 20)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -164,7 +169,7 @@ public class Interface_I extends javax.swing.JFrame {
                             .addComponent(Footer)
                             .addGroup(PantallaLayout.createSequentialGroup()
                                 .addGap(14, 14, 14)
-                                .addComponent(jtxtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btn_reset, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(21, 21, 21))
@@ -174,7 +179,7 @@ public class Interface_I extends javax.swing.JFrame {
             .addGroup(PantallaLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(PantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jtxtbuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addComponent(jBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                     .addComponent(btn_reset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -215,7 +220,68 @@ public class Interface_I extends javax.swing.JFrame {
 
     private void btn_resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_resetActionPerformed
         // TODO add your handling code here:
+        query();
     }//GEN-LAST:event_btn_resetActionPerformed
+
+    /*
+    public void datos_tabla(){
+        int contador = 0;
+        try {
+            Statement st_cont = Conn.createStatement();
+            ResultSet rs_cont = st_cont.executeQuery(" SELECT *FROM p_list_phone");
+            
+            int cont = 0;
+            M_datos = new String[contador][5];
+            while (rs.next()){
+                M_datos[cont][0] = rs.getString("name");
+                M_datos[cont][1] = rs.getString("surname");
+                M_datos[cont][2] = rs.getString("GEO");
+                M_datos[cont][3] = rs.getString("phone");
+                M_datos[cont][4] = rs.getString("extension");
+                cont = cont + 1;
+                
+            }
+            
+            
+        } catch (Exception e) {
+           // Logger.getLogger(vistal.class.getName()).log(Level.SERVERE,null, ex);
+        }
+        
+    }*/
+    
+    
+    private void jBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBuscarKeyReleased
+        // Busqueda en tiempo real
+      /*  int valor = 0;
+        int cont = 0;
+        String aux = "" + jBuscar.getText();
+            try {
+                Statement st_cont = Conn.createStatement();
+                rs = st_cont.executeQuery(" SELECT COUNT(*) FROM p_list_phone WHERE name LIKE '"+jBuscar.getText() + "%' ");
+                if(rs.next()){
+                    valor = rs.getInt(1);
+                }
+                
+                    M_datos = new String[valor][5]; 
+                
+                
+        } catch (Exception e) {
+        }
+        */
+    }//GEN-LAST:event_jBuscarKeyReleased
+
+    private void jBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarActionPerformed
+        // seatch
+   
+        
+        
+      
+            
+    }//GEN-LAST:event_jBuscarActionPerformed
+
+    private void jBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBuscarKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBuscarKeyTyped
 
     /**
      * @param args the command line arguments
@@ -261,6 +327,8 @@ public class Interface_I extends javax.swing.JFrame {
     
  
     //Metodo Vistas
+    
+    /*
    void query(){
        String sql = " SELECT *FROM p_list_phone ";
    
@@ -281,14 +349,63 @@ public class Interface_I extends javax.swing.JFrame {
         }
         Tabla.setModel(modelo);
         
-        
-        
-        
        } catch (Exception e) {
        
        }
+   }*/
+   
+   private void query (){
+       String busqueda = jBuscar.getText();
+       
+       DefaultTableModel modelo = new DefaultTableModel();
+       modelo.addColumn("name");
+       modelo.addColumn("surname");
+       modelo.addColumn("GEO");
+       modelo.addColumn("phone");
+       modelo.addColumn("extension");
+       
+       Tabla.setModel(modelo);
+       
+       Tabla.getColumnModel().getColumn(0);
+       Tabla.getColumnModel().getColumn(1);
+       Tabla.getColumnModel().getColumn(2);
+       Tabla.getColumnModel().getColumn(3);
+       Tabla.getColumnModel().getColumn(4);
+       
+       String sql = "SELECT *FROM p_list_phone WHERE NAME LIKE '%"+busqueda+"%';";
+       
+       String datos [] = new String[5];
+       
+       try {
+            Conn = cn.conectar();
+            st = Conn.createStatement();
+            rs = st.executeQuery(sql);
+           
+           while (rs.next()){
+               datos [0] = rs.getString("name");
+               datos [1] = rs.getString("surname");
+               datos [2] = rs.getString("GEO");
+               datos [3] = rs.getString("phone");
+               datos [4] = rs.getString("extension");
+               
+               modelo.addRow(datos);
+           }
+           
+           Tabla.setModel(modelo);
+           
+       } catch (Exception e) {
+           JOptionPane.showMessageDialog(null, e.getMessage());
+       } /*finally {
+           cn.desconectar();
+       }*/
+       
+  
+       
    }
+   
+   
     
+  
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -297,11 +414,11 @@ public class Interface_I extends javax.swing.JFrame {
     private javax.swing.JTable Tabla;
     private javax.swing.JButton btn_log;
     private javax.swing.JButton btn_reset;
+    private javax.swing.JTextField jBuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jtxtbuscar;
     // End of variables declaration//GEN-END:variables
 }

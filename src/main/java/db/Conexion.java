@@ -22,4 +22,10 @@ public class Conexion {
         }
         return conectar;
     }
+
+    public class sentencia {
+
+        public sentencia() {
+        }
+    }
 }

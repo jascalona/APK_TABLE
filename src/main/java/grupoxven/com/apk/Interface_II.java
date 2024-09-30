@@ -1,17 +1,43 @@
 package grupoxven.com.apk;
 
+//conections
+import db.Conexion;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.FileReader;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
+
+
 /**
  *
  * @author JEscalona
  */
 public class Interface_II extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Interface_I
-     */
+    //Creation Instancia
+    Conexion cn = new Conexion();
+    Connection  Conn;
+    
+    //VAR
+    DefaultTableModel modelo;
+    Statement st;
+    ResultSet rs;
+    
+    
     public Interface_II() {
         initComponents();
         setLocationRelativeTo(null);
+        query();
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -21,11 +47,13 @@ public class Interface_II extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         Pantalla = new javax.swing.JPanel();
         btn_edit = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        jBuscar = new javax.swing.JTextField();
         btn_log_out = new javax.swing.JButton();
         btn_drop = new javax.swing.JButton();
         btn_agg = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Tabla = new javax.swing.JTable();
         btn_reset = new javax.swing.JButton();
         btn_cog = new javax.swing.JButton();
         Title = new javax.swing.JLabel();
@@ -49,10 +77,23 @@ public class Interface_II extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setBackground(new java.awt.Color(102, 102, 102));
-        jTextField1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jBuscar.setBackground(new java.awt.Color(102, 102, 102));
+        jBuscar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jBuscar.setForeground(new java.awt.Color(204, 204, 204));
+        jBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBuscarActionPerformed(evt);
+            }
+        });
+        jBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jBuscarKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jBuscarKeyReleased(evt);
+            }
+        });
 
         btn_log_out.setBackground(new java.awt.Color(0, 0, 51));
         btn_log_out.setIcon(new javax.swing.ImageIcon("C:\\Users\\JEscalona\\Documents\\NetBeansProjects\\APK\\src\\main\\java\\images\\log-out.png")); // NOI18N
@@ -87,15 +128,36 @@ public class Interface_II extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 102));
 
+        Tabla.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(Tabla);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 329, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(23, 23, 23)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(24, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 232, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(28, 28, 28)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(28, Short.MAX_VALUE)))
         );
 
         btn_reset.setBackground(new java.awt.Color(0, 0, 51));
@@ -144,7 +206,7 @@ public class Interface_II extends javax.swing.JFrame {
                             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PantallaLayout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btn_reset, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(21, 21, 21))
@@ -172,7 +234,7 @@ public class Interface_II extends javax.swing.JFrame {
                 .addComponent(Title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(PantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1)
+                    .addComponent(jBuscar)
                     .addComponent(btn_reset, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -248,6 +310,23 @@ public class Interface_II extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btn_cogActionPerformed
 
+    private void jBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBuscarActionPerformed
+
+    private void jBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBuscarKeyPressed
+        if(evt.getExtendedKeyCode() == KeyEvent.VK_ENTER){
+            query();
+        }
+    }//GEN-LAST:event_jBuscarKeyPressed
+
+    private void jBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBuscarKeyReleased
+        // Busqueda en tiempo real
+        if(jBuscar.getText().trim().equals(""));{
+            query();
+        }
+    }//GEN-LAST:event_jBuscarKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -285,10 +364,60 @@ public class Interface_II extends javax.swing.JFrame {
             }
         });
     }
+    
+    //Metodo Query
+   private void query (){
+       String busqueda = jBuscar.getText();
+       
+       DefaultTableModel modelo = new DefaultTableModel();
+       modelo.addColumn("Nombre");
+       modelo.addColumn("Apellido");
+       modelo.addColumn("GEO");
+       modelo.addColumn("Phone");
+       modelo.addColumn("Extension");
+       
+       Tabla.setModel(modelo);
+       
+       Tabla.getColumnModel().getColumn(0);
+       Tabla.getColumnModel().getColumn(1);
+       Tabla.getColumnModel().getColumn(2);
+       Tabla.getColumnModel().getColumn(3);
+       Tabla.getColumnModel().getColumn(4);
+       
+       String sql = "SELECT *FROM p_list_phone WHERE NAME LIKE '%"+busqueda+"%';";
+       
+       String datos [] = new String[5];
+       
+       try {
+            Conn = cn.conectar();
+            st = Conn.createStatement();
+            rs = st.executeQuery(sql);
+           
+           while (rs.next()){
+               datos [0] = rs.getString("name");
+               datos [1] = rs.getString("surname");
+               datos [2] = rs.getString("GEO");
+               datos [3] = rs.getString("phone");
+               datos [4] = rs.getString("extension");
+               
+               modelo.addRow(datos);
+           }
+           
+           Tabla.setModel(modelo);
+           
+       } catch (Exception e) {
+           JOptionPane.showMessageDialog(null, e.getMessage());
+       } /*finally {
+           cn.desconectar();
+       }*/
+       
+   }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Footer;
     private javax.swing.JPanel Pantalla;
+    private javax.swing.JTable Tabla;
     private javax.swing.JLabel Title;
     private javax.swing.JButton btn_agg;
     private javax.swing.JButton btn_cog;
@@ -296,9 +425,10 @@ public class Interface_II extends javax.swing.JFrame {
     private javax.swing.JButton btn_edit;
     private javax.swing.JButton btn_log_out;
     private javax.swing.JButton btn_reset;
+    private javax.swing.JTextField jBuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

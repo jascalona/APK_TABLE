@@ -1,6 +1,7 @@
 package grupoxven.com.apk;
 
 import db.Conexion;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.FileReader;
@@ -65,7 +66,6 @@ public class Interface_I extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla = new javax.swing.JTable();
-        btn_reset = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,6 +84,9 @@ public class Interface_I extends javax.swing.JFrame {
             }
         });
         jBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jBuscarKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jBuscarKeyReleased(evt);
             }
@@ -110,6 +113,7 @@ public class Interface_I extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\JEscalona\\Documents\\NetBeansProjects\\APK\\src\\main\\java\\images\\user-circle.png")); // NOI18N
 
+        Tabla.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -144,17 +148,6 @@ public class Interface_I extends javax.swing.JFrame {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        btn_reset.setBackground(new java.awt.Color(0, 0, 51));
-        btn_reset.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btn_reset.setForeground(new java.awt.Color(204, 204, 204));
-        btn_reset.setIcon(new javax.swing.ImageIcon("C:\\Users\\JEscalona\\Documents\\NetBeansProjects\\APK\\src\\main\\java\\images\\reset.png")); // NOI18N
-        btn_reset.setBorder(null);
-        btn_reset.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_resetActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout PantallaLayout = new javax.swing.GroupLayout(Pantalla);
         Pantalla.setLayout(PantallaLayout);
         PantallaLayout.setHorizontalGroup(
@@ -165,22 +158,18 @@ public class Interface_I extends javax.swing.JFrame {
                     .addComponent(btn_log, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(PantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(PantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Footer)
-                            .addGroup(PantallaLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(jBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btn_reset, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(Footer)))
                 .addGap(21, 21, 21))
+            .addGroup(PantallaLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jBuscar)
+                .addGap(96, 96, 96))
         );
         PantallaLayout.setVerticalGroup(
             PantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PantallaLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(PantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                    .addComponent(btn_reset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -218,11 +207,6 @@ public class Interface_I extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btn_logActionPerformed
 
-    private void btn_resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_resetActionPerformed
-        // TODO add your handling code here:
-        query();
-    }//GEN-LAST:event_btn_resetActionPerformed
-
     /*
     public void datos_tabla(){
         int contador = 0;
@@ -252,6 +236,11 @@ public class Interface_I extends javax.swing.JFrame {
     
     private void jBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBuscarKeyReleased
         // Busqueda en tiempo real
+            if(jBuscar.getText().trim().equals("")); {
+            query();
+    }
+        
+        
       /*  int valor = 0;
         int cont = 0;
         String aux = "" + jBuscar.getText();
@@ -282,6 +271,14 @@ public class Interface_I extends javax.swing.JFrame {
     private void jBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBuscarKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_jBuscarKeyTyped
+
+    private void jBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBuscarKeyPressed
+        // TODO add your handling code here:
+        if(evt.getExtendedKeyCode()== KeyEvent.VK_ENTER ){
+            query();
+        }
+        
+    }//GEN-LAST:event_jBuscarKeyPressed
 
     /**
      * @param args the command line arguments
@@ -358,11 +355,11 @@ public class Interface_I extends javax.swing.JFrame {
        String busqueda = jBuscar.getText();
        
        DefaultTableModel modelo = new DefaultTableModel();
-       modelo.addColumn("name");
-       modelo.addColumn("surname");
+       modelo.addColumn("Nombre");
+       modelo.addColumn("Apellido");
        modelo.addColumn("GEO");
-       modelo.addColumn("phone");
-       modelo.addColumn("extension");
+       modelo.addColumn("Phone");
+       modelo.addColumn("Extension");
        
        Tabla.setModel(modelo);
        
@@ -413,7 +410,6 @@ public class Interface_I extends javax.swing.JFrame {
     private javax.swing.JPanel Pantalla;
     private javax.swing.JTable Tabla;
     private javax.swing.JButton btn_log;
-    private javax.swing.JButton btn_reset;
     private javax.swing.JTextField jBuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

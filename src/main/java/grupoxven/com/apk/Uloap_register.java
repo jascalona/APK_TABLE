@@ -374,8 +374,8 @@ public class Uloap_register extends javax.swing.JFrame {
                 st.executeUpdate(sql);
                 JOptionPane.showMessageDialog(null, "Su registro fue cargado con Exito!");
                 //volver a Interface_III
-                Interface_III InterIII =new Interface_III();
-                InterIII.setVisible(true);
+                Interface_II InterII =new Interface_II();
+                InterII.setVisible(true);
                 this.setVisible(false);
             }
             

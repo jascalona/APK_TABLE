@@ -239,24 +239,7 @@ public class Interface_I extends javax.swing.JFrame {
             if(jBuscar.getText().trim().equals("")); {
             query();
     }
-        
-        
-      /*  int valor = 0;
-        int cont = 0;
-        String aux = "" + jBuscar.getText();
-            try {
-                Statement st_cont = Conn.createStatement();
-                rs = st_cont.executeQuery(" SELECT COUNT(*) FROM p_list_phone WHERE name LIKE '"+jBuscar.getText() + "%' ");
-                if(rs.next()){
-                    valor = rs.getInt(1);
-                }
-                
-                    M_datos = new String[valor][5]; 
-                
-                
-        } catch (Exception e) {
-        }
-        */
+            
     }//GEN-LAST:event_jBuscarKeyReleased
 
     private void jBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarActionPerformed

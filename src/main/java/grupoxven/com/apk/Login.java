@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import db.Conexion;
 import db.LoginGetSet;
 import db.QueryL;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -60,6 +61,11 @@ public class Login extends javax.swing.JFrame {
         btn_ingresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ingresarActionPerformed(evt);
+            }
+        });
+        btn_ingresar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btn_ingresarKeyPressed(evt);
             }
         });
 
@@ -184,6 +190,7 @@ public class Login extends javax.swing.JFrame {
             InterII.setVisible(true);
            // Interface_II.NameUser.setText(datos[1]);
         }
+        
     }//GEN-LAST:event_btn_ingresarActionPerformed
 
     private void btn_volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_volverActionPerformed
@@ -196,6 +203,10 @@ public class Login extends javax.swing.JFrame {
     private void inputPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputPasswordActionPerformed
+
+    private void btn_ingresarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btn_ingresarKeyPressed
+       
+    }//GEN-LAST:event_btn_ingresarKeyPressed
 
     /**
      * @param args the command line arguments

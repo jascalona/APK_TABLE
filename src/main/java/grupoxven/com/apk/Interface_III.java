@@ -1,6 +1,7 @@
 package grupoxven.com.apk;
 
 import db.Conexion;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -43,6 +44,7 @@ public class Interface_III extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla = new javax.swing.JTable();
+        jBuscar = new javax.swing.JTextField();
         btn_volver = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         Footer = new javax.swing.JLabel();
@@ -81,28 +83,10 @@ public class Interface_III extends javax.swing.JFrame {
 
             },
             new String [] {
-                "id", "Name", "Surname", "Pass", "Roll"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(Tabla);
-        if (Tabla.getColumnModel().getColumnCount() > 0) {
-            Tabla.getColumnModel().getColumn(0).setPreferredWidth(25);
-        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -120,6 +104,27 @@ public class Interface_III extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
+
+        jBuscar.setBackground(new java.awt.Color(102, 102, 102));
+        jBuscar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jBuscar.setForeground(new java.awt.Color(204, 204, 204));
+        jBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBuscarActionPerformed(evt);
+            }
+        });
+        jBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jBuscarKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jBuscarKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jBuscarKeyTyped(evt);
+            }
+        });
 
         btn_volver.setBackground(new java.awt.Color(0, 0, 51));
         btn_volver.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -174,13 +179,6 @@ public class Interface_III extends javax.swing.JFrame {
             PantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PantallaLayout.createSequentialGroup()
                 .addGroup(PantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PantallaLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(btn_log_out, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_edit, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_drop, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PantallaLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(PantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -192,12 +190,24 @@ public class Interface_III extends javax.swing.JFrame {
                                 .addGap(83, 83, 83)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(107, 107, 107))
-                            .addComponent(btn_agg, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btn_agg, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PantallaLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(PantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PantallaLayout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(PantallaLayout.createSequentialGroup()
+                                .addComponent(btn_log_out, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_edit, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btn_drop, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(95, 95, 95))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PantallaLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(101, 101, 101))
+            .addGroup(PantallaLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(jBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PantallaLayout.setVerticalGroup(
             PantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,8 +220,10 @@ public class Interface_III extends javax.swing.JFrame {
                         .addGap(25, 25, 25)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
+                .addComponent(jBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(PantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PantallaLayout.createSequentialGroup()
                         .addGap(53, 53, 53)
@@ -276,6 +288,31 @@ public class Interface_III extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btn_aggActionPerformed
 
+    private void jBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarActionPerformed
+        // seatch
+
+    }//GEN-LAST:event_jBuscarActionPerformed
+
+    private void jBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBuscarKeyPressed
+        // TODO add your handling code here:
+        if(evt.getExtendedKeyCode()== KeyEvent.VK_ENTER ){
+            query();
+        }
+
+    }//GEN-LAST:event_jBuscarKeyPressed
+
+    private void jBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBuscarKeyReleased
+        // Busqueda en tiempo real
+        if(jBuscar.getText().trim().equals("")); {
+            query();
+        }
+
+    }//GEN-LAST:event_jBuscarKeyReleased
+
+    private void jBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBuscarKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBuscarKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -319,6 +356,8 @@ public class Interface_III extends javax.swing.JFrame {
     }
     
     //Metodo Vistas
+    
+    /*
     void query(){
         String sql = " SELECT *FROM p_list_phone_log";
         
@@ -343,6 +382,53 @@ public class Interface_III extends javax.swing.JFrame {
             
         }
     }
+    */
+    
+    //Metodo query
+    private void query(){
+        String busqueda = jBuscar.getText();
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("ID");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Pass");
+        modelo.addColumn("Roll");
+        
+        Tabla.setModel(modelo);
+        Tabla.getColumnModel().getColumn(0).setPreferredWidth(20);
+        Tabla.getColumnModel().getColumn(1);
+        Tabla.getColumnModel().getColumn(2);
+        Tabla.getColumnModel().getColumn(3);
+        Tabla.getColumnModel().getColumn(4);
+    
+       String sql = "SELECT *FROM p_list_phone_log WHERE NAME LIKE '%"+busqueda+"%';";
+        
+        String datos [] = new String [5];
+        
+        try {
+            Conn =  cn.conectar();
+            st = Conn.createStatement();
+            rs = st.executeQuery(sql);
+            
+            while(rs.next()){
+                datos [0] = rs.getString("id");
+                datos [1] = rs.getString("name");
+                datos [2] = rs.getString("surname");
+                datos [3] = rs.getString("password");
+                datos [4] = rs.getString("roll");
+                
+                modelo.addRow(datos);
+            }
+            
+            Tabla.setModel(modelo);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+    
+    
     
     //Metodo Drop
     public void dropDt(){
@@ -380,6 +466,7 @@ public class Interface_III extends javax.swing.JFrame {
     private javax.swing.JButton btn_edit;
     private javax.swing.JButton btn_log_out;
     private javax.swing.JButton btn_volver;
+    private javax.swing.JTextField jBuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

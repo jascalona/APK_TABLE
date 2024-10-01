@@ -16,6 +16,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
+import grupoxven.com.apk.EditR;
+
 
 /**
  *
@@ -265,6 +267,8 @@ public class Interface_II extends javax.swing.JFrame {
         EditR Er =new EditR();
         Er.setVisible(true);
         this.setVisible(false);
+        
+        
         
     }//GEN-LAST:event_btn_editActionPerformed
 

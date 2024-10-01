@@ -347,7 +347,7 @@ public class Interface_I extends javax.swing.JFrame {
        Tabla.getColumnModel().getColumn(3);
        Tabla.getColumnModel().getColumn(4);
        
-       String sql = "SELECT *FROM p_list_phone WHERE NAME LIKE '%"+busqueda+"%';";
+       String sql = "SELECT *FROM p_list_phone WHERE NAME LIKE '%"+busqueda+"%' OR SURNAME LIKE '%"+busqueda+"%' OR GEO LIKE '%"+busqueda+"%' OR PHONE LIKE '%"+busqueda+"%' OR EXTENSION LIKE '%"+busqueda+"%' ";
        
        String datos [] = new String[5];
        

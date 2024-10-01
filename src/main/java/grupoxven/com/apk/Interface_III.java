@@ -15,6 +15,8 @@ public class Interface_III extends javax.swing.JFrame {
 
     //Instancia de Conexion
     Conexion cn =new Conexion();
+
+    private int RowSelection;
     
     Connection Conn;
     DefaultTableModel modelo;
@@ -272,7 +274,10 @@ public class Interface_III extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_volverActionPerformed
 
     private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
-        // TODO add your handling code here:
+        // btn_edit
+        
+        
+        
     }//GEN-LAST:event_btn_editActionPerformed
 
     private void btn_dropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dropActionPerformed
@@ -402,7 +407,7 @@ public class Interface_III extends javax.swing.JFrame {
         Tabla.getColumnModel().getColumn(3);
         Tabla.getColumnModel().getColumn(4);
     
-       String sql = "SELECT *FROM p_list_phone_log WHERE NAME LIKE '%"+busqueda+"%';";
+       String sql = "SELECT *FROM p_list_phone_log WHERE NAME LIKE '%"+busqueda+"%' OR SURNAME LIKE '%"+busqueda+"%' OR ROLL LIKE '%"+busqueda+"%' ";
         
         String datos [] = new String [5];
         
@@ -455,7 +460,10 @@ public class Interface_III extends javax.swing.JFrame {
 
     }
     
-
+    //Metodo Edit 
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Footer;
     private javax.swing.JPanel Pantalla;

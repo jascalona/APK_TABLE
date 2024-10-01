@@ -261,7 +261,10 @@ public class Interface_II extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
-        // btn_ingresar
+        // btn_edit
+        EditR Er =new EditR();
+        Er.setVisible(true);
+        this.setVisible(false);
         
     }//GEN-LAST:event_btn_editActionPerformed
 
@@ -360,14 +363,14 @@ public class Interface_II extends javax.swing.JFrame {
        
        Tabla.setModel(modelo);
        
-       Tabla.getColumnModel().getColumn(0);
+       Tabla.getColumnModel().getColumn(0).setPreferredWidth(35);
        Tabla.getColumnModel().getColumn(1);
        Tabla.getColumnModel().getColumn(2);
        Tabla.getColumnModel().getColumn(3);
        Tabla.getColumnModel().getColumn(4);
        Tabla.getColumnModel().getColumn(5);
        
-       String sql = "SELECT *FROM p_list_phone WHERE NAME LIKE '%"+busqueda+"%';";
+       String sql = "SELECT *FROM p_list_phone WHERE NAME LIKE '%"+busqueda+"%' OR SURNAME LIKE '%"+busqueda+"%' OR GEO LIKE '%"+busqueda+"%' OR PHONE LIKE '%"+busqueda+"%' OR EXTENSION LIKE '%"+busqueda+"%' ";
        
        String datos [] = new String[6];
        
@@ -418,7 +421,7 @@ public class Interface_II extends javax.swing.JFrame {
             
             
         } catch (Exception e){
-            JOptionPane.showMessageDialog(null, "Ha Ocurrido un error al Eliminar este Usuario!" +e.getMessage());
+            JOptionPane.showMessageDialog(null, "Ha Ocurrido un Error, debe selecionar almenos un registro!" +e.getMessage());
 
         }
     }
